@@ -9,20 +9,20 @@ constructor(props){
   this.state={
     konum :null,
     hata:null,
-  }
+  };
 
 
-navigator.geolocation.getCurrentPosition(
+navigator.geolocation.getCurrentPosition( 
   (konum)=>{
-    this.setState({ konum: konum.coords.latitude});
-    console.log(this.state.konum);
+    this.setState({konum: konum.coords.latitude});
+    console.log(`konum: `,this.state.konum);
   },
   
   (hata)=>{
     this.setState({hata: hata.message});
     console.log(`hata: `, this.state.hata);
   },
-)
+);
 }
 
 render () {
