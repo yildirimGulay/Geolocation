@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const App = ()=> {
-  navigator.geolocation.getCurrentPosition(
-    (konum)=>console.log(`konum:`, konum.coords.latitude),
-    (hata)=>console.log(`hata: `, hata.message)
-  );
 
+class App extends Component {
+constructor(props){
+  super(props);
+  this.state={
+    konum :null,
+    hata:null,
+  }
+
+
+navigator.geolocation.getCurrentPosition(
+  (konum)=>{
+    this.setState({ konum: konum.coords.latitude});
+    console.log(this.state.konum);
+  },
+  
+  (hata)=>{
+    this.setState({hata: hata.message});
+    console.log(`hata: `, this.state.hata);
+  },
+)
+}
+
+render () {
   return(
 
 <div>
@@ -15,7 +33,7 @@ const App = ()=> {
 </div>
 
   );
-
+  }
 };
 
 
